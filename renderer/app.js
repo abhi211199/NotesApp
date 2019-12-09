@@ -1,4 +1,5 @@
 const {ipcRenderer}=require('electron')
+const items = require('./items')
 
 let showModal=document.getElementById('show-modal'),
     hideModal=document.getElementById('close-modal'),
@@ -38,4 +39,5 @@ url.addEventListener('keyup',e=>{
 ipcRenderer.on('url_sent',(e,url)=>{
     add.innerHTML="Add item"
     console.log(url);
+    items.addItems(url)
 })

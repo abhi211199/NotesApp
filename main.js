@@ -5,6 +5,7 @@
 //--or
 const {app,BrowserWindow,ipcMain} = require('electron')
 const readpage=require('./readpage.js')
+
 //the basic diff b/w the upper and lower declaation is we are extracting an attribute in different ways
 //https://stackoverflow.com/questions/41058569/what-is-the-difference-between-const-and-const-in-javascript/41058622
 
@@ -18,6 +19,7 @@ ipcMain.on('url_fetch',(e,url)=>{
     e.sender.send('url_sent',iurl);
   })
 })
+
 
 let mainWindow
 
@@ -33,7 +35,6 @@ function createWindow () {
   })
   mainWindowState.manage(mainWindow);
   mainWindow.loadFile('./renderer/main.html')
-
   mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed',  () => {

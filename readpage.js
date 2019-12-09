@@ -18,7 +18,7 @@ module.exports = (url,callback)=>{
         let title= offwindow.getTitle()
         offwindow.webContents.capturePage(image=>{
             let scr = image.toDataURL()
-            callback({title:title,scrshoy:scr,url:url})
+            callback({title:title,scrshot:scr,url:url})
             offwindow.close()
             offwindow=null 
         })
