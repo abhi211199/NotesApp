@@ -23,6 +23,7 @@ add.addEventListener('click',fx);
 function fx()
 {
     //send url on add click
+    add.innerText="Fetching"
     ipcRenderer.send("url_fetch",url.value)
 }
 //hitting enter on url box submits and hitting esc hides modal
@@ -35,5 +36,6 @@ url.addEventListener('keyup',e=>{
 
 //listen response from main process
 ipcRenderer.on('url_sent',(e,url)=>{
+    add.innerHTML="Add item"
     console.log(url);
 })

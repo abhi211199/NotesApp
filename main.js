@@ -4,6 +4,7 @@
 
 //--or
 const {app,BrowserWindow,ipcMain} = require('electron')
+const readpage=require('./readpage.js')
 //the basic diff b/w the upper and lower declaation is we are extracting an attribute in different ways
 //https://stackoverflow.com/questions/41058569/what-is-the-difference-between-const-and-const-in-javascript/41058622
 
@@ -13,7 +14,9 @@ const winStateKeeper = require('electron-window-state')
 //listen to data sent from render process and send a response
 ipcMain.on('url_fetch',(e,url)=>{
   console.log(url)
-  e.sender.send('url_sent',"success");
+  readpage(url,iurl=>{
+    e.sender.send('url_sent',iurl);
+  })
 })
 
 let mainWindow
