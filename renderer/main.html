@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <header>
+      <button id="show-modal">+</button>
+      <input type="text" id="search" placeholder="Search">
+    </header>
+    <main>
+      <p id="no items">No items</p>
+      <div id="items">
+        <div class="read-item">
+          <img src="https://placehold.it/500/500">
+          <h2>Title</h2>
+        </div>
+        <div class="read-item">
+            <img src="https://placehold.it/500/500">
+            <h2>Title</h2>
+        </div>
+        <div class="read-item">
+            <img src="https://placehold.it/500/500">
+            <h2>Title</h2>
+        </div>
+          <div class="read-item">
+              <img src="https://placehold.it/500/500">
+              <h2>Title</h2>
+        </div>
+      </div>
+    </main>
+
+    <div id="modal">
+      <input type="text" id="url" placeholder="Enter url">
+      <button id="add-item">Add item</button>
+      <button id="close-modal">cancel</button>
+    </div>
+    
+    <script>
+      require('./app.js')
+    </script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    font: caption;
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+  }
+  
+  button {
+    background: dodgerblue;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    outline: none;
+  }
+  
+  input {
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    padding: 0 10px;
+  }
+  
+  input::placeholder {
+    color: lightgray;
+  }
+  
+  header {
+    background: lightgray;
+    display: flex;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid silver;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  }
+  
+  #show-modal {
+    padding: 0px 12px 5px;
+    margin-right: 10px;
+    font-size: 30px;
+  }
+  
+  #search {
+    flex-grow: 1;
+  }
+  
+  main {
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+  
+  #no-items {
+    font-weight: bold;
+    color: silver;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    z-index: -1;
+  }
+  
+  #modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    display: none;
+  }
+  
+  #url {
+    flex-grow: 1;
+    width: 100%;
+    margin: 0 25px 15px;
+    padding: 10px;
+  }
+  
+  #modal button {
+    padding: 10px;
+  }
+  
+  #close-modal {
+    background: white;
+    color: black;
+    margin-left: 15px;
+  }
+  
+  #add-item {
+    margin-left: 25px;
+  }
+
+.read-item{
+     display: flex;
+     align-items: center;
+     align-content: center;
+     border-bottom: lightgray 2px solid;
+     background: lightskyblue;
+     padding: 10px;
+ }
+
+ .read-item img{
+     width: 20%;
+     margin-right: 25px;
+ }
