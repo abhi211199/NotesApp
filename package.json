@@ -1,21 +1,18 @@
 {
-  "name": "electron-app",
+  "name": "NotesApp",
   "version": "1.0.0",
-  "description": "Master Electron Course Code",
+  "description": "NotesApp",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "watch": "nodemon --exec 'electron .'",
     "reset": "git reset --hard"
   },
-  "repository": "https://github.com/stackacademytv/master-electron",
+  "repository": "",
   "keywords": [
     "Electron",
-    "Master Electron",
-    "demo"
   ],
-  "author": "GitHub, Stackacademytv",
-  "license": "CC0-1.0",
+  "author": "Abhishek Garain",
   "devDependencies": {
     "electron": "^5.0.10",
     "nodemon": "^1.19.2"
