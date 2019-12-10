@@ -6,6 +6,20 @@ let showModal=document.getElementById('show-modal'),
     Modal=document.getElementById('modal'),
     add=document.getElementById('add-item'),
     url=document.getElementById('url');
+    search=document.getElementById('search');
+
+//search logic
+search.addEventListener('keyup',e=>{
+    // console.log("aa")
+    // console.log((document.getElementsByClassName('read-item')).length)
+    Array.from(document.getElementsByClassName('read-item')).forEach(item=>{
+        // console.log(item.innerText.toLowerCase()+"aa\n") 
+        if(item.innerText.toLowerCase().includes(search.value))
+        item.style.display='flex'
+        else
+        item.style.display='none'
+    })
+})
 
 //show-modal logic
 showModal.addEventListener('click',e=>{
