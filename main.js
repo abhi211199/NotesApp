@@ -3,7 +3,7 @@
 // const BrowserWindow=electron.BrowserWindow
 
 //--or
-const {app,BrowserWindow,ipcMain} = require('electron')
+const {app,BrowserWindow,ipcMain,session} = require('electron')
 const readpage=require('./readpage.js')
 
 //the basic diff b/w the upper and lower declaation is we are extracting an attribute in different ways
@@ -23,6 +23,13 @@ ipcMain.on('url_fetch',(e,url)=>{
 
 let mainWindow
 
+// let cook = session.defaultSession
+let getCookies = ()=>{
+  session.defaultSession.cookies.get({},(e,cookie)=>{
+    console.log(cookie)
+  })
+}
+
 function createWindow () {
   let mainWindowState = winStateKeeper({
     defaultWidth: 1000,
@@ -35,11 +42,17 @@ function createWindow () {
   })
   mainWindowState.manage(mainWindow);
   mainWindow.loadFile('./renderer/main.html')
+  // mainWindow.loadURL('https://github.com/')
+  mainWindow.webContents.on('did-finish-load',e => {
+    getCookies()
+  })
   mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed',  () => {
     mainWindow = null
   })
+  const sess=mainWindow.webContents.session
+  console.log(sess)
 }
 
 app.on('ready', createWindow)
@@ -50,3 +63,5 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   if (mainWindow === null) createWindow()
 })
+
+

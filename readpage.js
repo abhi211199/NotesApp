@@ -1,5 +1,7 @@
 //this script fetches a scrnshot, title of a webpage
 const {BrowserWindow} = require('electron')
+//const {BrowserWindow} = require('electron').remote
+//remote should be used if readpage is accessed from renderer and not main
 
 let offwindow
 

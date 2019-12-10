@@ -26,6 +26,8 @@ function fx()
     //send url on add click
     add.innerText="Fetching"
     ipcRenderer.send("url_fetch",url.value)
+    //the ipc msgs are used coz the readpage.js creates BrowserWindow which is inaccessable from renderer process
+    //it may be accessed from renderer if remote is used.
 }
 //hitting enter on url box submits and hitting esc hides modal
 url.addEventListener('keyup',e=>{
