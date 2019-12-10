@@ -37,6 +37,11 @@ url.addEventListener('keyup',e=>{
     hideModal.click();
 })
 
+Modal.addEventListener('keyup',e=>{
+    if(e.key==='Escape')
+    hideModal.click();
+})
+
 //listen response from main process
 ipcRenderer.on('url_sent',(e,url)=>{
     add.innerHTML="Add item"
