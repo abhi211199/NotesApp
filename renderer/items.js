@@ -6,8 +6,7 @@ exports.save = () =>{
     localStorage.setItem('items_saved',JSON.stringify(this.storage))
 }
 
-
-exports.addItems = item =>{
+exports.addItems = (item,type=false) =>{
     let node = document.createElement('div')
     node.setAttribute('class','read-item')
     // console.log(item.title)
@@ -15,12 +14,15 @@ exports.addItems = item =>{
     if(items.innerHTML==="<p>No Items</p>")
     items.innerHTML=""
     items.appendChild(node)
-    this.storage.push(JSON.stringify(item))
-    this.save()
-    // console.log(JSON.parse(localStorage.getItem('items_saved')))
-    // localStorage.setItem('items_saved',JSON.stringify(this.storage))
-
-    // abc()
-    // localStorage.clear()
-    // console.log(items.innerHTML)
+    if(type)
+    {
+        this.storage.push(JSON.stringify(item))
+        this.save()
+    }
+    // console.log(JSON.parse(localStorage.getItem('items_saved')).length) 
 }
+
+this.storage.forEach(item=>{
+    // console.log(JSON.parse(item))
+    this.addItems(JSON.parse(item),false)
+})

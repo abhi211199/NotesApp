@@ -41,8 +41,6 @@ function createWindow () {
   mainWindow.on('closed',  () => {
     mainWindow = null
   })
-  const sess=mainWindow.webContents.session
-  console.log(sess)
 }
 
 app.on('ready', createWindow)

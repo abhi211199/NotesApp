@@ -46,5 +46,5 @@ Modal.addEventListener('keyup',e=>{
 ipcRenderer.on('url_sent',(e,url)=>{
     add.innerHTML="Add item"
     console.log(url);
-    items.addItems(url)
+    items.addItems(url,true)
 })
