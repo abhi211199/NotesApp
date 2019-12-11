@@ -101,11 +101,23 @@ html, body {
      align-items: center;
      align-content: center;
      border-bottom: lightgray 2px solid;
-     background: lightskyblue;
+     background:#FFFFFF;
      padding: 10px;
+     border-left: lightgray 10px solid;
+     -webkit-user-select: none
  }
+.read-item:hover {
+  background-color:rgb(154, 221, 241);
+}
 
- .read-item img{
+.read-item.selected {
+  border-left:rgb(100, 221, 241) 10px solid;
+}
+.read-item img{
      width: 20%;
      margin-right: 25px;
+ }
+
+ #url1 {
+   display: none;
  }

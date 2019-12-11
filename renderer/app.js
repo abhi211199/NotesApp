@@ -8,6 +8,8 @@ let showModal=document.getElementById('show-modal'),
     url=document.getElementById('url');
     search=document.getElementById('search');
 
+//focus set on search box
+search.focus()
 //search logic
 search.addEventListener('keyup',e=>{
     // console.log("aa")
