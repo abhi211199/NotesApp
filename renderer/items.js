@@ -7,6 +7,8 @@ exports.storage = JSON.parse(localStorage.getItem('items_saved')) || []
 exports.save = () =>{
     localStorage.setItem('items_saved',JSON.stringify(this.storage))
 }
+// let count = JSON.parse  (Buffer.concat(this.storage).toString()).length 
+// console.log(count)
 
 //select item logic
 exports.select = e=>{
@@ -18,20 +20,20 @@ exports.select = e=>{
 
 //open window of url
 exports.open = e=>{
-    // let a= new BrowserWindow({
-    //     width:500,
-    //     height:500,
-    //     webPreferences:{
-    //         nodeIntegration:true,
-    //     },
-    // })
-    // a.loadURL(e.currentTarget.querySelector('p').innerText)
+    let a= new BrowserWindow({
+        width:500,
+        height:500,
+        webPreferences:{
+            nodeIntegration:true,
+        },
+    })
+    a.loadURL(e.currentTarget.querySelector('p').innerText)
     
     //or
     
-    openWindow(e.currentTarget.querySelector('p').innerText,() =>{
+    // openWindow(e.currentTarget.querySelector('p').innerText,() =>{
 
-    })
+    // })
 }
 
 //add items logic
@@ -39,7 +41,7 @@ exports.addItems = (item,type=false) =>{
     let node = document.createElement('div')
     node.setAttribute('class','read-item')
     // console.log(item.title)
-    node.innerHTML='<img src='+(item.scrshot)+'><h2>'+(item.title)+'</h2><p id="url1">'+(item.url)+'</p>'
+    node.innerHTML='<img src='+(item.scrshot)+'><h2>'+(item.title)+'</h2><p id="url1">'+(item.url)+'</p><p id="id1">'+(item.id1)+'</p>'
     if(items.innerHTML==="<p>No Items</p>")
     items.innerHTML=""
     node.addEventListener('click',this.select)

@@ -1,3 +1,4 @@
+//renderer process to open a webpage doubleclicked 
 const {app,BrowserWindow} = require('electron').remote
 
 module.exports = (url) =>{
@@ -17,5 +18,4 @@ let offwindow
     offwindow.on('close',()=>{
         offwindow=null
     })
-
 }
