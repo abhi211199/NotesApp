@@ -113,6 +113,11 @@ html, body {
 .read-item.selected {
   border-left:rgb(100, 221, 241) 10px solid;
 }
+
+.read-item.selected.deleted {
+  display: none;
+}
+
 .read-item img{
      width: 20%;
      margin-right: 25px;

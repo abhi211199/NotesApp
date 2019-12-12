@@ -5,25 +5,17 @@ let showModal=document.getElementById('show-modal'),
     hideModal=document.getElementById('close-modal'),
     Modal=document.getElementById('modal'),
     add=document.getElementById('add-item'),
-    url=document.getElementById('url');
-    search=document.getElementById('search');
+    url=document.getElementById('url'),
+    search=document.getElementById('search'),
+    del=document.getElementById('del');
 
     const storage = function() { return(JSON.parse(localStorage.getItem('items_saved')) || []);};
-    // console.log(storage())
 
-    // this.storage.forEach(e=>{
-    //     console.log(e)
-    // })
-    //  (JSON.parse(localStorage.getItem('items_saved'))=[])
-// console.log(JSON.parse(JSON.parse(localStorage.getItem('items_saved'))))
-// localStorage.setItem('items_saved',JSON.stringify(JSON.parse((this.storage).splice(0,1))))
 //focus set on search box
 search.focus()
 
 //search logic
 search.addEventListener('keyup',e=>{
-    // console.log("aa")
-    // console.log((document.getElementsByClassName('read-item')).length)
     Array.from(document.getElementsByClassName('read-item')).forEach(item=>{
         // console.log(item.innerText.toLowerCase()+"aa\n") 
         if(item.innerText.toLowerCase().includes(search.value))
@@ -75,4 +67,17 @@ ipcRenderer.on('url_sent',(e,url)=>{
     add.innerHTML="Add item"
     // console.log(url);
     items.addItems(url,true)
+})
+
+//deletion login
+del.addEventListener('click',e=>{
+    var a = document.getElementsByClassName('read-item selected')
+    var i
+    for(i=0;i<a.length;i++)
+    {
+        var aaa=storage()
+        aaa[a[i].querySelector('#id1').innerText]=null
+        localStorage.setItem("items_saved",JSON.stringify(aaa))
+        a[i].classList.add('deleted')
+    }
 })

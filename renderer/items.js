@@ -7,8 +7,6 @@ exports.storage = JSON.parse(localStorage.getItem('items_saved')) || []
 exports.save = () =>{
     localStorage.setItem('items_saved',JSON.stringify(this.storage))
 }
-// let count = JSON.parse  (Buffer.concat(this.storage).toString()).length 
-// console.log(count)
 
 //select item logic
 exports.select = e=>{
@@ -38,9 +36,9 @@ exports.open = e=>{
 
 //add items logic
 exports.addItems = (item,type=false) =>{
+    if(item!=null){
     let node = document.createElement('div')
     node.setAttribute('class','read-item')
-    // console.log(item.title)
     node.innerHTML='<img src='+(item.scrshot)+'><h2>'+(item.title)+'</h2><p id="url1">'+(item.url)+'</p><p id="id1">'+(item.id1)+'</p>'
     if(items.innerHTML==="<p>No Items</p>")
     items.innerHTML=""
@@ -52,10 +50,8 @@ exports.addItems = (item,type=false) =>{
         this.storage.push(JSON.stringify(item))
         this.save()
     }
-    // console.log(JSON.parse(localStorage.getItem('items_saved')).length) 
-}
+}}
 
 this.storage.forEach(item=>{
-    // console.log(JSON.parse(item))
     this.addItems(JSON.parse(item),false)
 })
