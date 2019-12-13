@@ -6,6 +6,8 @@ let showModal=document.getElementById('show-modal'),
     Modal=document.getElementById('modal'),
     add=document.getElementById('add-item'),
     url=document.getElementById('url'),
+    note=document.getElementById('note1'),
+    noted=document.getElementById('noted1'),
     search=document.getElementById('search'),
     del=document.getElementById('del');
 
@@ -38,21 +40,38 @@ hideModal.addEventListener('click',e=>{
 
 function fx()
 {
-    //send url on add click
-    add.innerText="Fetching"
-    var count = storage().length
-    ipcRenderer.send("url_fetch",{url1:url.value,ids:count})
+        if(url.value!==''||note.value!==''||noted.value!==''){
+            if(url.value!=''&&alertOnlineStatus()==='online')
+            {
+                add.innerText="Saving"
+                var count = storage().length
+                console.log(noted.value)
+                ipcRenderer.send("url_fetch",{url1:url.value,note:note.value,noted:noted.value,ids:count})
+            }
+            else if(url.value!=''&&alertOnlineStatus()==='offline'){
+                window.alert('Connection Offline! Please check your connection.')
+            }
+            else{
+                add.innerText="Saving"
+                var count = storage().length
+                ipcRenderer.send("url_fetch",{url1:url.value,note:note.value,noted:noted.value,ids:count})
+    }}
+        else{
+            url.placeholder='Please enter a valid URL to continue!'
+            note.placeholder='Please enter a valid title to contiue!'
+            noted.placeholder='Please enter a valid description to continue'
+        }
     //the ipc msgs are used coz the readpage.js creates BrowserWindow which is inaccessable from renderer process
     //it may be accessed from renderer if remote is used.
 }
+
 //add-item logic
 add.addEventListener('click',e =>{fx()});
-
 
 //hitting enter on url box submits and hitting esc hides modal
 url.addEventListener('keyup',e=>{
     if(e.key==='Enter')
-    fx();
+    fx()
     else if(e.key==='Escape')
     hideModal.click();
 })
@@ -65,7 +84,7 @@ Modal.addEventListener('keyup',e=>{
 //listen response from main process
 ipcRenderer.on('url_sent',(e,url)=>{
     add.innerHTML="Add item"
-    // console.log(url);
+    console.log(url);
     items.addItems(url,true)
 })
 
@@ -81,3 +100,7 @@ del.addEventListener('click',e=>{
         a[i].classList.add('deleted')
     }
 })
+
+const alertOnlineStatus = () => {
+    return (navigator.onLine ? 'online' : 'offline')
+  }

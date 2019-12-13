@@ -73,21 +73,48 @@ html, body {
     align-content: center;
     flex-wrap: wrap;
     display: none;
+    /* color:red; */
   }
   
   #url {
     flex-grow: 1;
-    width: 100%;
+    /* width: 100%; */
     margin: 0 25px 15px;
     padding: 10px;
+    /* display: inline; */
   }
   
+  #e_url {
+    /* margin-left: 120px; */
+    background-color: floralwhite;
+    display: inline;
+    margin-left: 35vw;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  #note1{
+    flex-grow: 1;
+    /* width: 100%; */
+    margin: 0 25px 15px;
+    padding: 10px;
+    /* display: inline; */
+  }
+
+  #noted1{
+    flex-grow: 1;
+    /* width: 100%; */
+    margin: 0 25px 15px;
+    padding: 10px;
+    /* display: inline; */
+  }
+
   #modal button {
     padding: 10px;
   }
   
   #close-modal {
-    background: white;
+    background: rgb(245, 128, 128);
     color: black;
     margin-left: 15px;
   }
@@ -97,7 +124,9 @@ html, body {
   }
 
 .read-item{
+     /* display: flex; */
      display: flex;
+  flex-flow: row wrap;
      align-items: center;
      align-content: center;
      border-bottom: lightgray 2px solid;
@@ -106,12 +135,20 @@ html, body {
      border-left: lightgray 10px solid;
      -webkit-user-select: none
  }
+
+ break{
+  flex-basis: 100%;
+  width: 0px; 
+  height: 0px; 
+  /* overflow; */
+}
+
 .read-item:hover {
-  background-color:rgb(154, 221, 241);
+  background-color:rgb(226, 239, 243);
 }
 
 .read-item.selected {
-  border-left:rgb(100, 221, 241) 10px solid;
+  border-left:rgb(241, 163, 100) 10px solid;
 }
 
 .read-item.selected.deleted {
@@ -129,4 +166,16 @@ html, body {
 
  #id1{
    display: none;
+ }
+
+ #note{
+    margin-left: 25vw;
+    display: inline;
+    font-size: 20px;
+ }
+
+ #noted {
+    margin-left: 20vw;
+    display: inline;
+    font-size: 20px;
  }

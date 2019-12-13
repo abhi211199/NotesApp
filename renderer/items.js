@@ -36,10 +36,15 @@ exports.open = e=>{
 
 //add items logic
 exports.addItems = (item,type=false) =>{
-    if(item!=null){
+    
+    if(item!=null){   
     let node = document.createElement('div')
     node.setAttribute('class','read-item')
-    node.innerHTML='<img src='+(item.scrshot)+'><h2>'+(item.title)+'</h2><p id="url1">'+(item.url)+'</p><p id="id1">'+(item.id1)+'</p>'
+    var title = item.note ? "Title: "+item.note : " "
+    var desc = item.noted ? "Description: "+item.noted : " "
+    var htm = '<img src='+(item.scrshot)+'><h2>'+(item.title)+'</h2><p id="url1">'+(item.url)+'</p><p id="id1">'+(item.id1)+'</p><break></break>'+'<p id="note">'+title+'</p>'+'<p id="noted">'+desc+'</p>'
+    console.log(title)
+    node.innerHTML=htm
     if(items.innerHTML==="<p>No Items</p>")
     items.innerHTML=""
     node.addEventListener('click',this.select)

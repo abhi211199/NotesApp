@@ -5,7 +5,7 @@ const {BrowserWindow} = require('electron')
 
 let offwindow
 //use module.exports or exports.func_name to declare function
-module.exports = (url,id,callback)=>{
+module.exports = (url,callback)=>{
     offwindow=new BrowserWindow({
         width:500,
         height:500,
@@ -15,12 +15,12 @@ module.exports = (url,id,callback)=>{
             offscreen:false
         }
     })
-    offwindow.loadURL(url)
+    offwindow.loadURL(url.url1)
     offwindow.webContents.on('did-finish-load',e=>{
         let title= offwindow.getTitle()
         offwindow.webContents.capturePage(image=>{
             let scr = image.toDataURL()
-            callback({title:title,scrshot:scr,url:url,id1:id})
+            callback({title:title,scrshot:scr,url:url.url1,id1:url.ids,note:url.note,noted:url.noted})
             offwindow.close()
             offwindow=null 
         })

@@ -15,7 +15,8 @@ const winStateKeeper = require('electron-window-state')
 //listen to data sent from render process and send a response
 ipcMain.on('url_fetch',(e,url)=>{
   console.log(url)
-  readpage(url.url1,url.ids,iurl=>{
+  readpage(url,iurl=>{
+    console.log(iurl)
     e.sender.send('url_sent',iurl);
   })
 })
