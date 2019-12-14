@@ -3,7 +3,7 @@
 // const BrowserWindow=electron.BrowserWindow
 
 //--or
-const {app,BrowserWindow,ipcMain} = require('electron')
+const {app,BrowserWindow,ipcMain,globalShortcut} = require('electron')
 const readpage=require('./readpage.js')
 
 //the basic diff b/w the upper and lower declaation is we are extracting an attribute in different ways
@@ -28,6 +28,12 @@ function createWindow () {
     defaultWidth: 1000,
     defaultHeight: 800
   });
+
+  // globalShortcut.register('Control+N', () => {
+  //   console.log("aa")
+  //   mainWindow.
+  //   e.sender.send('add',1)})
+
   mainWindow = new BrowserWindow({
     width: mainWindowState.width, height: mainWindowState.height,
     maxHeight:500,maxWidth:500,minHeight:200,minWidth:200,

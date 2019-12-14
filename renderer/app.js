@@ -1,4 +1,5 @@
 const {ipcRenderer}=require('electron')
+const {globalShortcut}=require('electron').remote
 const items = require('./items')
 
 let showModal=document.getElementById('show-modal'),
@@ -13,6 +14,9 @@ let showModal=document.getElementById('show-modal'),
 
     const storage = function() { return(JSON.parse(localStorage.getItem('items_saved')) || []);};
 
+    
+
+   
 //focus set on search box
 search.focus()
 
@@ -105,11 +109,17 @@ const alertOnlineStatus = () => {
   }
 
 note.addEventListener('keyup',e=>{
-    if(e.key=='Enter')
+    if(e.key==='Enter')
     add.click()
 })
 
 noted.addEventListener('keyup',e=>{
-    if(e.key=='Enter')
+    if(e.key==='Enter')
     add.click()
 })
+
+globalShortcut.register('Control+N', () => {
+    // console.log('CommandOrControl+X is pressed')
+    showModal.click()
+  })
+
