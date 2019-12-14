@@ -19,7 +19,6 @@ search.focus()
 //search logic
 search.addEventListener('keyup',e=>{
     Array.from(document.getElementsByClassName('read-item')).forEach(item=>{
-        // console.log(item.innerText.toLowerCase()+"aa\n") 
         if(item.innerText.toLowerCase().includes(search.value))
         item.style.display='flex'
         else
@@ -104,3 +103,13 @@ del.addEventListener('click',e=>{
 const alertOnlineStatus = () => {
     return (navigator.onLine ? 'online' : 'offline')
   }
+
+note.addEventListener('keyup',e=>{
+    if(e.key=='Enter')
+    add.click()
+})
+
+noted.addEventListener('keyup',e=>{
+    if(e.key=='Enter')
+    add.click()
+})

@@ -15,6 +15,8 @@ module.exports = (url,callback)=>{
             offscreen:false
         }
     })
+    if(url.url1==='')
+    callback({title:'',scrshot:'./none.png',url:url.url1,id1:url.ids,note:url.note,noted:url.noted})
     offwindow.loadURL(url.url1)
     offwindow.webContents.on('did-finish-load',e=>{
         let title= offwindow.getTitle()
