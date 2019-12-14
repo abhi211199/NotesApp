@@ -1,5 +1,5 @@
 const {ipcRenderer}=require('electron')
-const {globalShortcut}=require('electron').remote
+const {globalShortcut,Menu,MenuItem,clipboard}=require('electron').remote
 const items = require('./items')
 
 let showModal=document.getElementById('show-modal'),
@@ -15,10 +15,12 @@ let showModal=document.getElementById('show-modal'),
     const storage = function() { return(JSON.parse(localStorage.getItem('items_saved')) || []);};
 
     
-
+var flag
    
 //focus set on search box
-search.focus()
+search.onfocus=function() {flag=1}
+note.onfocus=function() {flag=3}
+noted.onfocus=function() {flag=4}
 
 //search logic
 search.addEventListener('keyup',e=>{
@@ -33,7 +35,7 @@ search.addEventListener('keyup',e=>{
 //show-modal logic
 showModal.addEventListener('click',e=>{
     Modal.style.display='flex'
-    url.focus()//pointer bydefault in url box
+    url.onfocus=function(){flag=2}//pointer bydefault in url box
 })
 
 //hide-modal logic
@@ -122,4 +124,25 @@ globalShortcut.register('Control+N', () => {
     // console.log('CommandOrControl+X is pressed')
     showModal.click()
   })
+
+
+const menu = new Menu()
+menu.append(new MenuItem({ label: 'Paste', click() { 
+    if(flag==1)
+    search.value=search.value.concat(clipboard.readText())
+    else if(flag==2)
+    url.value=url.value.concat(clipboard.readText())
+    else if(flag==3)
+    note.value=note.value.concat(clipboard.readText())
+    else if(flag==4)
+    noted.value=noted.value.concat(clipboard.readText())
+    
+} }))
+menu.append(new MenuItem({ type: 'separator' }))
+menu.append(new MenuItem({ label: 'MenuItem2', type: 'checkbox', checked: true }))
+  
+window.addEventListener('contextmenu', (e) => {
+   e.preventDefault()
+   menu.popup({ window: require('electron').remote.getCurrentWindow() })
+}, false)
 
