@@ -1,4 +1,4 @@
-const {ipcRenderer}=require('electron')
+const {ipcRenderer,remote}=require('electron')
 const {globalShortcut,Menu,MenuItem,clipboard}=require('electron').remote
 const items = require('./items')
 
@@ -97,12 +97,18 @@ ipcRenderer.on('url_sent',(e,url)=>{
 del.addEventListener('click',e=>{
     var a = document.getElementsByClassName('read-item selected')
     var i
-    for(i=0;i<a.length;i++)
+    if(a.length===0)
+    window.alert('Please select atleast one note!')
+    else
     {
-        var aaa=storage()
-        aaa[a[i].querySelector('#id1').innerText]=null
-        localStorage.setItem("items_saved",JSON.stringify(aaa))
-        a[i].classList.add('deleted')
+        for(i=0;i<a.length;i++)
+        {
+            var aaa=storage()
+            aaa[a[i].querySelector('#id1').innerText]=null
+            localStorage.setItem("items_saved",JSON.stringify(aaa))
+            a[i].classList.add('deleted')
+        }
+        remote.getCurrentWindow().reload()
     }
 })
 
