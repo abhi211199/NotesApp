@@ -3,7 +3,7 @@
 // const BrowserWindow=electron.BrowserWindow
 
 //--or
-const {app,BrowserWindow,ipcMain,globalShortcut} = require('electron')
+const {app,BrowserWindow,ipcMain,Menu} = require('electron')
 const readpage=require('./readpage.js')
 
 //the basic diff b/w the upper and lower declaation is we are extracting an attribute in different ways
@@ -28,11 +28,9 @@ function createWindow () {
     defaultWidth: 1000,
     defaultHeight: 800
   });
-
-  // globalShortcut.register('Control+N', () => {
-  //   console.log("aa")
-  //   mainWindow.
-  //   e.sender.send('add',1)})
+  console.log(template)
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
 
   mainWindow = new BrowserWindow({
     width: mainWindowState.width, height: mainWindowState.height,
@@ -59,4 +57,76 @@ app.on('activate', () => {
   if (mainWindow === null) createWindow()
 })
 
+
+const isMac = process.platform === 'darwin'
+
+const template = require('./menus')
+//  [
+//   { role: 'appMenu' },
+//   ...(isMac ? [{
+//     label: app.name,
+//     submenu: [
+//       { role: 'about' },
+//       { type: 'separator' },
+//       { role: 'services' },
+//       { type: 'separator' },
+//       { role: 'hide' },
+//       { role: 'hideothers' },
+//       { role: 'unhide' },
+//       { type: 'separator' },
+//       { role: 'quit' }
+//     ]
+//   }] : []),
+//   // { role: 'fileMenu' },
+//   {
+//     label: 'File',
+//     submenu: [
+//       isMac ? { role: 'close' } : { role: 'quit' }
+//     ]
+//   },
+//   // { role: 'editMenu' },
+//   // { role: 'viewMenu' },
+//   {
+//     label: 'View',
+//     submenu: [
+//       { role: 'reload' },
+//       { role: 'forcereload' },
+//       { role: 'toggledevtools' },
+//       { type: 'separator' },
+//       { role: 'resetzoom' },
+//       { role: 'zoomin' },
+//       { role: 'zoomout' },
+//       { type: 'separator' },
+//       { role: 'togglefullscreen' }
+//     ]
+//   },
+//   // { role: 'windowMenu' },
+//   {
+//     label: 'Window',
+//     submenu: [
+//       { role: 'minimize' },
+//       { role: 'zoom' },
+//       ...(isMac ? [
+//         { type: 'separator' },
+//         { role: 'front' },
+//         { type: 'separator' },
+//         { role: 'window' }
+//       ] : [
+//         { role: 'close' }
+//       ])
+//     ]
+//   },
+//   {
+//     role: 'help',
+//     submenu: [
+//       {
+//         label: 'Learn More',
+//         click: async () => {
+//           const { shell } = require('electron')
+//           await shell.openExternal('https://electronjs.org')
+//         }
+//       }
+//     ]
+//   }
+// ]
 
