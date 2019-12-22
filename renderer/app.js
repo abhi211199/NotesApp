@@ -1,5 +1,5 @@
 const {ipcRenderer,remote}=require('electron')
-const {globalShortcut,Menu,MenuItem,clipboard}=require('electron').remote
+const {globalShortcut,Menu,MenuItem,clipboard,app}=require('electron').remote
 const items = require('./items')
 
 let showModal=document.getElementById('show-modal'),
@@ -10,13 +10,14 @@ let showModal=document.getElementById('show-modal'),
     note=document.getElementById('note1'),
     noted=document.getElementById('noted1'),
     search=document.getElementById('search'),
-    del=document.getElementById('del');
+    del=document.getElementById('del'),
+    mod=document.getElementById('mod');
 
     const storage = function() { return(JSON.parse(localStorage.getItem('items_saved')) || []);};
 
     
-var flag
-   
+var flag,flag1=-1
+   console.log(flag1)
 //focus set on search box
 search.onfocus=function() {flag=1}
 note.onfocus=function() {flag=3}
@@ -35,6 +36,7 @@ search.addEventListener('keyup',e=>{
 //show-modal logic
 showModal.addEventListener('click',e=>{
     Modal.style.display='flex'
+    url.focus()
     url.onfocus=function(){flag=2}//pointer bydefault in url box
 })
 
@@ -49,7 +51,7 @@ function fx()
             if(url.value!=''&&alertOnlineStatus()==='online')
             {
                 add.innerText="Saving"
-                var count = storage().length
+                var count = (flag1===-1)?storage().length:flag1
                 console.log(noted.value)
                 ipcRenderer.send("url_fetch",{url1:url.value,note:note.value,noted:noted.value,ids:count})
             }
@@ -58,7 +60,7 @@ function fx()
             }
             else{
                 add.innerText="Saving"
-                var count = storage().length
+                var count = (flag1===-1)?storage().length:flag1
                 ipcRenderer.send("url_fetch",{url1:url.value,note:note.value,noted:noted.value,ids:count})
     }}
         else{
@@ -144,11 +146,28 @@ menu.append(new MenuItem({ label: 'Paste', click() {
     noted.value=noted.value.concat(clipboard.readText())
     
 } }))
-menu.append(new MenuItem({ type: 'separator' }))
-menu.append(new MenuItem({ label: 'MenuItem2', type: 'checkbox', checked: true }))
+// menu.append(new MenuItem({ type: 'separator' }))
+// menu.append(new MenuItem({ label: 'MenuItem2', type: 'checkbox', checked: true }))
   
 window.addEventListener('contextmenu', (e) => {
    e.preventDefault()
    menu.popup({ window: require('electron').remote.getCurrentWindow() })
 }, false)
 
+//modify logic
+mod.addEventListener('click',e=>{
+    // console.log(document.getElementsByClassName('read-item selected')))
+    if(document.getElementsByClassName('read-item selected').length===1)
+    {
+        url.value=document.getElementsByClassName('read-item selected')[0].querySelector('#url1').innerText
+        note.value=document.getElementsByClassName('read-item selected')[0].querySelector('#note').innerText.slice(7)
+        noted.value=document.getElementsByClassName('read-item selected')[0].querySelector('#noted').innerText.slice(13)
+        showModal.click()
+        flag1=document.getElementsByClassName('read-item selected')[0].querySelector('#id1').innerText;
+    }
+    else
+    {
+        window.alert('Please choose one note at a time!')
+        remote.getCurrentWindow().reload()
+    }
+})

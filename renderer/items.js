@@ -1,6 +1,6 @@
 const openWindow = require('./open')
 let items = document.getElementById("items")
-const {app,BrowserWindow} = require('electron').remote
+const {BrowserWindow} = require('electron').remote
 
 exports.storage = JSON.parse(localStorage.getItem('items_saved')) || []
 
@@ -43,7 +43,7 @@ exports.addItems = (item,type=false) =>{
     var title = item.note ? "Title: "+item.note : " "
     var desc = item.noted ? "Description: "+item.noted : " "
     var htm = '<img src='+(item.scrshot)+'><h2>'+(item.title)+'</h2><p id="url1">'+(item.url)+'</p><p id="id1">'+(item.id1)+'</p><break></break>'+'<p id="note">'+title+'</p>'+'<p id="noted">'+desc+'</p>'
-    console.log(title)
+    // console.log(title)
     node.innerHTML=htm
     if(items.innerHTML==="<p>No Items</p>")
     items.innerHTML=""
@@ -52,8 +52,13 @@ exports.addItems = (item,type=false) =>{
     items.appendChild(node)
     if(type)
     {
-        this.storage.push(JSON.stringify(item))
+        let abc=this.storage
+        abc[item.id1]=JSON.stringify(item)
+        this.storage=abc
+        // this.storage.push(JSON.stringify(item))
         this.save()
+        require('electron').remote.getCurrentWindow().reload()
+
     }
 }}
 

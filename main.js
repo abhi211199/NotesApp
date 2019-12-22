@@ -14,9 +14,9 @@ const winStateKeeper = require('electron-window-state')
 
 //listen to data sent from render process and send a response
 ipcMain.on('url_fetch',(e,url)=>{
-  console.log(url)
+  // console.log(url)
   readpage(url,iurl=>{
-    console.log(iurl)
+    // console.log(iurl)
     e.sender.send('url_sent',iurl);
   })
 })
@@ -28,7 +28,7 @@ function createWindow () {
     defaultWidth: 1000,
     defaultHeight: 800
   });
-  console.log(template)
+  // console.log(template)
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
 
@@ -61,72 +61,3 @@ app.on('activate', () => {
 const isMac = process.platform === 'darwin'
 
 const template = require('./menus')
-//  [
-//   { role: 'appMenu' },
-//   ...(isMac ? [{
-//     label: app.name,
-//     submenu: [
-//       { role: 'about' },
-//       { type: 'separator' },
-//       { role: 'services' },
-//       { type: 'separator' },
-//       { role: 'hide' },
-//       { role: 'hideothers' },
-//       { role: 'unhide' },
-//       { type: 'separator' },
-//       { role: 'quit' }
-//     ]
-//   }] : []),
-//   // { role: 'fileMenu' },
-//   {
-//     label: 'File',
-//     submenu: [
-//       isMac ? { role: 'close' } : { role: 'quit' }
-//     ]
-//   },
-//   // { role: 'editMenu' },
-//   // { role: 'viewMenu' },
-//   {
-//     label: 'View',
-//     submenu: [
-//       { role: 'reload' },
-//       { role: 'forcereload' },
-//       { role: 'toggledevtools' },
-//       { type: 'separator' },
-//       { role: 'resetzoom' },
-//       { role: 'zoomin' },
-//       { role: 'zoomout' },
-//       { type: 'separator' },
-//       { role: 'togglefullscreen' }
-//     ]
-//   },
-//   // { role: 'windowMenu' },
-//   {
-//     label: 'Window',
-//     submenu: [
-//       { role: 'minimize' },
-//       { role: 'zoom' },
-//       ...(isMac ? [
-//         { type: 'separator' },
-//         { role: 'front' },
-//         { type: 'separator' },
-//         { role: 'window' }
-//       ] : [
-//         { role: 'close' }
-//       ])
-//     ]
-//   },
-//   {
-//     role: 'help',
-//     submenu: [
-//       {
-//         label: 'Learn More',
-//         click: async () => {
-//           const { shell } = require('electron')
-//           await shell.openExternal('https://electronjs.org')
-//         }
-//       }
-//     ]
-//   }
-// ]
-

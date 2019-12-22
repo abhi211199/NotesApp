@@ -43,7 +43,18 @@ html, body {
     margin-right: 10px;
     font-size: 30px;
   }
-  
+
+  #del {
+    padding: 0px 12px 5px;
+    margin-right: 10px;
+    /* font-size: 10px; */
+  }
+  #mod {
+    padding: 0px 12px 5px;
+    margin-left:10px;
+    margin-right: 10px;
+    /* font-size: 10px; */
+  }
   #search {
     flex-grow: 1;
   }
