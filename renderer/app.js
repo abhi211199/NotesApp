@@ -17,7 +17,7 @@ let showModal=document.getElementById('show-modal'),
 
     
 var flag,flag1=-1
-   console.log(flag1)
+
 //focus set on search box
 search.onfocus=function() {flag=1}
 note.onfocus=function() {flag=3}
@@ -133,6 +133,15 @@ globalShortcut.register('Control+N', () => {
     showModal.click()
   })
 
+ globalShortcut.register('Control+Shift+N', () => {
+    // console.log('CommandOrControl+X is pressed')
+    mod.click()
+  })
+
+globalShortcut.register('Control+D', () => {
+    // console.log('CommandOrControl+X is pressed')
+    del.click()
+  })
 
 const menu = new Menu()
 menu.append(new MenuItem({ label: 'Paste', click() { 
@@ -156,7 +165,7 @@ window.addEventListener('contextmenu', (e) => {
 
 //modify logic
 mod.addEventListener('click',e=>{
-    // console.log(document.getElementsByClassName('read-item selected')))
+    console.log(document.getElementsByClassName('read-item selected'))
     if(document.getElementsByClassName('read-item selected').length===1)
     {
         url.value=document.getElementsByClassName('read-item selected')[0].querySelector('#url1').innerText

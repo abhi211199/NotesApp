@@ -24,6 +24,8 @@ module.exports=[
     {
       label:"Help",
       submenu:[
+        {label:"Shortcuts",click:()=>{const dialogOptions = {type: 'info', buttons: ['OK'], message: 'New Note: Ctrl+N\nModify Note: Ctrl+Shift+N\nDelete Note: Ctrl+D'}
+        dialog.showMessageBox(dialogOptions)}},
         {label:"Visit Repository",click:()=>{shell.openExternal("https://github.com/abhi211199/NotesApp")}},
         {label:"About",click:()=>{
           const dialogOptions = {type: 'info', buttons: ['OK'], message: 'Developed by Abhishek Garain!'}
