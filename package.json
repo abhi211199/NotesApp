@@ -18,6 +18,7 @@
     "nodemon": "^1.19.2"
   },
   "dependencies": {
-    "electron-window-state": "^5.0.3"
+    "electron-window-state": "^5.0.3",
+    "node-notifier": "^6.0.0"
   }
 }
