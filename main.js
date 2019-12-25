@@ -72,8 +72,6 @@ mainWindow.on('activate', function () {
 })
 
 }
-
-
       var contextMenu = Menu.buildFromTemplate([
           {
               label: 'Show App', click: function () {
