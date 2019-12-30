@@ -18,3 +18,4 @@ The desktop app is built using ElectronJs and works on all desktop platforms cap
 - Minimizing the app can be reopened from Taskbar or Tray
 - Double Clicking a note opens up the link
 
+A short video description can be found [here](https://drive.google.com/file/d/16SgLzVHsxTNlLam7GhFB-6g4siyHX7At/view?usp=sharing).
