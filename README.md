@@ -8,6 +8,7 @@ The desktop app is built using ElectronJs and works on all desktop platforms cap
 
 ## Setting Up the Environment
 - Make sure `node` and `npm` are installed.
+- Run `npm install` to import necessary modules.
 - `npm run start` starts the electron app.
 
 ## Features of the App
@@ -15,4 +16,5 @@ The desktop app is built using ElectronJs and works on all desktop platforms cap
 - Ability to modify the notes and delete after selecting them
 - Search notes on basis of content
 - Minimizing the app can be reopened from Taskbar or Tray
+- Double Clicking a note opens up the link
 
